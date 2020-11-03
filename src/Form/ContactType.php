@@ -18,7 +18,11 @@ class ContactType extends AbstractType
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
             ->add('birthday',DateType::class,[
-                'widget'=>'single_text'
+                'widget'=>'single_text',
+                'help'=>'contact.birthday.help',
+                'help_attr'=>[
+                    'class'=>'birthday-help'
+                ]
             ])
             ->add('email', EmailType::class)
         ;
@@ -28,6 +32,7 @@ class ContactType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Contact::class,
+            'label_format'=>'contact.%name%.label',
         ]);
     }
 }

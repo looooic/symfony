@@ -1,0 +1,17 @@
+contact:
+    action: Action
+    firstname:
+        label: "Votre prénom : "
+        head: Prénom
+    lastname:
+        label: "Votre nom : "
+        head: Nom
+    birthday:
+        head: Date de naissance
+        label: "Votre date de naissance : "
+        help: Vous devez être majeur
+    email:
+        head: Email
+        label: "Votre adresse e-mail : "
+    aucun: Aucun contact pour le moment
+    nouveau: Créer nouveau contact

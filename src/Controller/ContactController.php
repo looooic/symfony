@@ -38,11 +38,13 @@ class ContactController extends AbstractController
     {
         $contact= new Contact();
 
-        $form=$this->createFormBuilder($contact)
+        $form=$this->createFormBuilder($contact,
+        ['label_format'=>'contact.%name%.label'])
             ->add('firstname', TextType::class)
             ->add('lastname',TextType::class)
             ->add('birthday',DateType::class,[
                 'widget'=>'single_text',
+
             ])
             ->add('email',EmailType::class)
             ->getForm();

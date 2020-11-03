@@ -9,3 +9,10 @@ body{
 .menu li {
     display: inline-block;
 }
+footer p {
+    text-align: center;
+}
+.birthday-help{
+    background-color: red;
+    color: white;
+}

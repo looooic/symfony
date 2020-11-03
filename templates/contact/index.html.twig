@@ -6,11 +6,11 @@
     <table>
         <thead>
         <tr>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Date de naissance</th>
-            <th>Mail</th>
-            <th>Action</th>
+            <th>{{ 'contact.firstname.head' | trans }}</th>
+            <th>{{ 'contact.lastname.head' | trans }}</th>
+            <th>{{ 'contact.birthday.head' | trans }}</th>
+            <th>{{ 'contact.email.head' | trans }}</th>
+            <th>{{ 'contact.action' | trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -24,12 +24,12 @@
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5"> Aucun contact</td>
+                    <td colspan="5"> {{ 'contact.aucun' | trans }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
     <p>
-        <a href="{{ path('add_contact') }}">Créer un nveau contact</a>
+        <a href="{{ path('add_contact') }}">{{ 'contact.nouveau' | trans }}</a>
     </p>
 {% endblock %}
