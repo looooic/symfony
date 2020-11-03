@@ -1,0 +1,11 @@
+body{
+    background-color: lightslategray;
+    color: black;
+}
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    display: inline-block;
+}

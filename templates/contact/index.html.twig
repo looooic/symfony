@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Contact{% endblock %}
+
+{% block body %}
+    <table>
+        <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Date de naissance</th>
+            <th>Mail</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.firstname }}</td>
+                    <td>{{ contact.lastname | capitalize }}</td>
+                    <td>{{ contact.birthday | date('d - m - y') }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td><a href="{{ path('edit_contact', {'id':contact.id}) }}">Editer</a></td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5"> Aucun contact</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>
+        <a href="{{ path('add_contact') }}">Créer un nveau contact</a>
+    </p>
+{% endblock %}

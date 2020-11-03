@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} - Nouveau contact {% endblock %}
+
+{% block body %}
+    {{ form_start(form_contact) }}
+    {{ form_widget(form_contact) }}
+    <input type="submit" name="submit" value="Enregistrer">
+    {{ form_end(form_contact) }}
+{% endblock %}
