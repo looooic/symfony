@@ -3,5 +3,8 @@
 {% block title %} {{ parent() }} - Edition{% endblock %}
 
 {% block body %}
-
+    {{ form_start(form_edit) }}
+    {{ form_widget(form_edit) }}
+    <input type="submit" name="submit" value="Modifier">
+    {{ form_end(form_edit) }}
 {% endblock %}

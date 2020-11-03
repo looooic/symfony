@@ -64,11 +64,20 @@ class ContactController extends AbstractController
     /**
      * @Route ("/edit/{id}",name="edit_contact", methods={"GET","PUT"})
      */
-    public function edit(Contact $contact)
+    public function edit(Contact $contact,
+    Request $request,
+    EntityManagerInterface $entityManager)
     {
         $form=$this->createForm(ContactType::class,$contact,[
            'method' => 'put'
         ]);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&& $form->isValid()){
+            $entityManager->persist($contact);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('contact');
+        }
         return $this->render('contact/edit.html.twig',
         ['form_edit'=>$form->createView(),]
         );
