@@ -13,5 +13,7 @@ contact:
     email:
         head: Email
         label: "Votre adresse e-mail : "
-    aucun: Aucun contact pour le moment
-    nouveau: Créer nouveau contact
+    empty_list: Aucun contact pour le moment
+    new: Créer nouveau contact test
+    edit: Editer
+    modify: {success: vos modifications ont bien été prises en compte !}

@@ -20,16 +20,16 @@
                     <td>{{ contact.lastname | capitalize }}</td>
                     <td>{{ contact.birthday | date('d - m - y') }}</td>
                     <td>{{ contact.email }}</td>
-                    <td><a href="{{ path('edit_contact', {'id':contact.id}) }}">Editer</a></td>
+                    <td><a href="{{ path('edit_contact', {'id':contact.id}) }}">{{ 'contact.edit' | trans }}</a></td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5"> {{ 'contact.aucun' | trans }}</td>
+                    <td colspan="5"> {{ 'contact.empty_list' | trans }}</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
     <p>
-        <a href="{{ path('add_contact') }}">{{ 'contact.nouveau' | trans }}</a>
+        <a href="{{ path('add_contact') }}">{{ 'contact.new' | trans }}</a>
     </p>
 {% endblock %}

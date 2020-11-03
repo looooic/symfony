@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route ("/contact")
@@ -68,7 +69,8 @@ class ContactController extends AbstractController
      */
     public function edit(Contact $contact,
     Request $request,
-    EntityManagerInterface $entityManager)
+    EntityManagerInterface $entityManager,
+    TranslatorInterface $translator)
     {
         $form=$this->createForm(ContactType::class,$contact,[
            'method' => 'put'
@@ -77,6 +79,8 @@ class ContactController extends AbstractController
         if ($form->isSubmitted()&& $form->isValid()){
             $entityManager->persist($contact);
             $entityManager->flush();
+
+            $this->addFlash('success', $translator->trans('contact.modify.success'));
 
             return $this->redirectToRoute('contact');
         }
