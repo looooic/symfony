@@ -16,3 +16,8 @@ footer p {
     background-color: red;
     color: white;
 }
+
+.flash-success{
+    background-color: lime;
+    color: whitesmoke;
+}
