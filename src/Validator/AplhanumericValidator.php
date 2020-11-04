@@ -2,6 +2,7 @@
 
 namespace App\Validator;
 
+use Symfony\Component\Form\Exception\UnexpectedTypeException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
@@ -9,15 +10,20 @@ class AplhanumericValidator extends ConstraintValidator
 {
     public function validate($value, Constraint $constraint)
     {
-        /* @var $constraint \App\Validator\Aplhanumeric */
+        if (!$constraint instanceof Aplhanumeric){
+            throw new UnexpectedTypeException($constraint, Aplhanumeric::class);
+        }
 
         if (null === $value || '' === $value) {
             return;
         }
 
-        // TODO: implement the validation here
-        $this->context->buildViolation($constraint->message)
-            ->setParameter('{{ value }}', $value)
-            ->addViolation();
+        if (!preg_match('/^[a-zA-Z0-9]+$/', $value, $matches)){
+            $this->context->buildViolation($constraint->message)
+                ->setParameter('{{ value }}', $value)
+                ->addViolation();
+        }
+
+
     }
 }
