@@ -28,6 +28,17 @@ class ArticleController extends AbstractController
     }
 
     /**
+     * @Route ("/list/last",name="article_list_last",methods={"GET"})
+     */
+
+    public function listLast(ArticleRepository $articleRepository)
+    {
+        return $this->render('article/index.html.twig',[
+            'articles'=>$articleRepository->findLast(),
+    ]);
+    }
+
+    /**
      * @Route("/list/published",name="article_list_published", methods={"GET"})
      */
 
