@@ -24,7 +24,10 @@ article:
     content: {label: Contenu}
     createdAt: Date de création
     updatedAt: Date de modification
-    published: {label: Publier}
+    published:
+        label: Publier
+        yes: "Liste des articles publiés :"
+        no: "Liste des articles non-publiés :"
     actions: Actions
     createNew: Créer nouvel article
     show: Montrer

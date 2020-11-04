@@ -31,18 +31,22 @@ class ArticleController extends AbstractController
      * @Route("/list/published",name="article_list_published", methods={"GET"})
      */
 
-    public function listPublished(): Response
+    public function listPublished(ArticleRepository $articleRepository): Response
     {
-        return $this->render('article/index.html.twig');
+        return $this->render('article/index.html.twig',[
+            'articles'=>$articleRepository->findPublished(true),
+        ]);
     }
 
     /**
      * @Route ("/list/unpublished",name="article_list_unpublished",methods={"GET"})
      */
 
-    public function listUnpublished(): Response
+    public function listUnpublished(ArticleRepository $articleRepository): Response
     {
-        return $this->render('article/index.html.twig');
+        return $this->render('article/index.html.twig',[
+            'articles'=>$articleRepository->findPublished(false),
+        ]);
     }
 
     /**
