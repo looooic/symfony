@@ -27,10 +27,10 @@
                 <td>{{ article.content }}</td>
                 <td>{{ article.createdAt ? article.createdAt|date('d-m-Y H:i:s') : '' }}</td>
                 <td>{{ article.updatedAt ? article.updatedAt|date('d-m-Y H:i:s') : '' }}</td>
-                <td>{{ article.published ? 'Publié' : 'Pas publié' }}</td>
+                <td>{{ (article.published ? 'article.yes' : 'article.no') |trans }}</td>
                 <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                    <a href="{{ path('article_show', {'id': article.id}) }}">{{ 'article.show' | trans }}</a>
+                    <a href="{{ path('article_edit', {'id': article.id}) }}">{{ 'article.edit' | trans }}</a>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +41,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('article_new') }}">Create new</a>
+    <a href="{{ path('article_new') }}">{{ 'article.createNew' | trans }}</a>
 {% endblock %}

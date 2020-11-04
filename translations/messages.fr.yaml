@@ -21,8 +21,13 @@ contact:
 article:
     title: Titre
     summary: Résumé
-    content: Contenue
+    content: Contenu
     createdAt: Date de création
     updatedAt: Date de modification
     published: Statut de publication
     actions: Actions
+    createNew: Créer nouvel article
+    show: Montrer
+    edit: Modifier
+    yes: Publié
+    no: Pas publié
