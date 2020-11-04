@@ -15,8 +15,6 @@ class ArticleType extends AbstractType
             ->add('title')
             ->add('summary')
             ->add('content')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('published')
         ;
     }
@@ -25,6 +23,7 @@ class ArticleType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Article::class,
+            'label_format'=>'article.%name%.label'
         ]);
     }
 }

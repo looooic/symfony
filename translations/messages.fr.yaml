@@ -19,12 +19,12 @@ contact:
     modify: {success: vos modifications ont bien été prises en compte !}
 
 article:
-    title: Titre
-    summary: Résumé
-    content: Contenu
+    title: {label: Titre}
+    summary: {label: Résumé}
+    content: {label: Contenu}
     createdAt: Date de création
     updatedAt: Date de modification
-    published: Statut de publication
+    published: {label: Publier}
     actions: Actions
     createNew: Créer nouvel article
     show: Montrer
