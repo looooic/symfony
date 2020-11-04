@@ -31,6 +31,9 @@ article:
     edit: Modifier
     yes: Publié
     no: Pas publié
+    back: Retour
+    MAJ: Mettre a jour
+    update: Enregistrer
 
     created:
         success: Votre article a bien été enregistré.

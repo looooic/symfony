@@ -19,6 +19,15 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
+    public function findPublished(bool $state)
+    {
+        // SELECT * FROM article WHERE published = x 
+        return ($qb= $this->createQueryBuilder('article'))
+            ->where($qb->expr()->eq('article.published',':state'))
+            ->setParameter('state', $state)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Article[] Returns an array of Article objects
     //  */

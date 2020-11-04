@@ -28,6 +28,24 @@ class ArticleController extends AbstractController
     }
 
     /**
+     * @Route("/list/published",name="article_list_published", methods={"GET"})
+     */
+
+    public function listPublished(): Response
+    {
+        return $this->render('article/index.html.twig');
+    }
+
+    /**
+     * @Route ("/list/unpublished",name="article_list_unpublished",methods={"GET"})
+     */
+
+    public function listUnpublished(): Response
+    {
+        return $this->render('article/index.html.twig');
+    }
+
+    /**
      * @Route("/new", name="article_new", methods={"GET","POST"})
      */
     public function new(
