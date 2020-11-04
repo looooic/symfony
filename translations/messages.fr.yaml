@@ -31,3 +31,10 @@ article:
     edit: Modifier
     yes: Publié
     no: Pas publié
+
+    created:
+        success: Votre article a bien été enregistré.
+    modify:
+        success: Votre article a bien été modifié.
+    delete:
+        success: Votre article a bien été supprimé.

@@ -5,10 +5,12 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/article")
@@ -28,17 +30,21 @@ class ArticleController extends AbstractController
     /**
      * @Route("/new", name="article_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(
+        Request $request,
+        EntityManagerInterface $entityManager,
+        TranslatorInterface $translator
+    ): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->persist($article);
             $entityManager->flush();
-
+            $this->addFlash('success',$translator->trans('article.created.success'));
             return $this->redirectToRoute('article_index');
         }
 
@@ -61,14 +67,17 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{id}/edit", name="article_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Article $article): Response
+    public function edit(Request $request,
+                         Article $article,
+                         EntityManagerInterface $entityManager,
+                         TranslatorInterface $translator): Response
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
+            $entityManager->flush();
+            $this->addFlash('success',$translator->trans('article.modify.success'));
             return $this->redirectToRoute('article_index');
         }
 
@@ -81,14 +90,17 @@ class ArticleController extends AbstractController
     /**
      * @Route("/{id}", name="article_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Article $article): Response
+    public function delete(Request $request, Article $article,
+                           EntityManagerInterface $entityManager, TranslatorInterface $translator): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
+        if ($this->isCsrfTokenValid('delete'.$article->getId(),
+            $request->request->get('_token'))) {
+
             $entityManager->remove($article);
             $entityManager->flush();
-        }
+            $this->addFlash('success', $translator->trans('article.delete.success'));
 
+        }
         return $this->redirectToRoute('article_index');
     }
 }
