@@ -9,13 +9,13 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Summary</th>
-                <th>Content</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>Published</th>
-                <th>actions</th>
+                <th>{{ 'article.title' | trans }}</th>
+                <th>{{ 'article.summary' | trans }}</th>
+                <th>{{ 'article.content' | trans }}</th>
+                <th>{{ 'article.createdAt' | trans }}</th>
+                <th>{{ 'article.updatedAt' | trans }}</th>
+                <th>{{ 'article.published' | trans }}</th>
+                <th>{{ 'article.actions' | trans }}</th>
             </tr>
         </thead>
         <tbody>
@@ -25,9 +25,9 @@
                 <td>{{ article.title }}</td>
                 <td>{{ article.summary }}</td>
                 <td>{{ article.content }}</td>
-                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.updatedAt ? article.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.published ? 'Yes' : 'No' }}</td>
+                <td>{{ article.createdAt ? article.createdAt|date('d-m-Y H:i:s') : '' }}</td>
+                <td>{{ article.updatedAt ? article.updatedAt|date('d-m-Y H:i:s') : '' }}</td>
+                <td>{{ article.published ? 'Publié' : 'Pas publié' }}</td>
                 <td>
                     <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
                     <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>

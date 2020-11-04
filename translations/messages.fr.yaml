@@ -17,3 +17,12 @@ contact:
     new: Créer nouveau contact test
     edit: Editer
     modify: {success: vos modifications ont bien été prises en compte !}
+
+article:
+    title: Titre
+    summary: Résumé
+    content: Contenue
+    createdAt: Date de création
+    updatedAt: Date de modification
+    published: Statut de publication
+    actions: Actions
