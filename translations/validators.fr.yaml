@@ -1,0 +1,7 @@
+contact:
+    firstname:
+        min: Vous devez saisir plus de 2 caractères
+        max: Vous devez saisir moins de 100 caractères
+
+    email:
+        error: Vous devez saisir une adresse email réelle

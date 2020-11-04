@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Email;
 
 class ContactType extends AbstractType
 {
@@ -24,7 +25,13 @@ class ContactType extends AbstractType
                     'class'=>'birthday-help'
                 ]
             ])
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class,[
+                'constraints'=>[
+                    new Email([
+                        'message'=>'contact.email.error'
+                   ]),
+                ]
+            ])
         ;
     }
 
