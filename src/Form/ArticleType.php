@@ -18,7 +18,8 @@ class ArticleType extends AbstractType
             ->add('title', TextType::class)
             ->add('summary', TextareaType::class)
             ->add('content', TextareaType::class)
-            ->add('published', CheckboxType::class)
+            ->add('published', CheckboxType::class,
+            ['required'=>false])
         ;
     }
 

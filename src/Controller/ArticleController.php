@@ -76,6 +76,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setUpdatedAt(new \DateTime());
             $entityManager->flush();
             $this->addFlash('success',$translator->trans('article.modify.success'));
             return $this->redirectToRoute('article_index');
