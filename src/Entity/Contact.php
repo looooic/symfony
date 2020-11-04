@@ -26,11 +26,18 @@ class Contact
      *     max="100",
      *     min="2"
      * )
+     * @Assert\NotBlank(
+     * message="contact.empty_text"
+     * )
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=100)
+     *
+     *@Assert\NotBlank(
+     * message="contact.empty_text"
+     * )
      */
     private $lastname;
 
@@ -64,7 +71,7 @@ class Contact
         return $this->firstname;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
 
@@ -76,7 +83,7 @@ class Contact
         return $this->lastname;
     }
 
-    public function setLastname(string $lastname): self
+    public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
 

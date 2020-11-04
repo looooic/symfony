@@ -5,3 +5,4 @@ contact:
 
     email:
         error: Vous devez saisir une adresse email réelle
+    empty_text: Le champs ne peut être vide
