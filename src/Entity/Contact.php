@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use App\Validator\Aplhanumeric;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -31,6 +32,8 @@ class Contact
      * @Assert\NotBlank(
      * message="contact.empty_text"
      * )
+     *
+     * @Aplhanumeric()
      */
     private $firstname;
 
