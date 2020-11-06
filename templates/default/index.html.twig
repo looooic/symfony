@@ -6,4 +6,5 @@
 
 {% block body %}
     <p>Bienvenue sur le site constitué avec Symfony</p>
+    {{ render(controller('App\\Controller\\ArticleController::latest')) }}
 {% endblock %}

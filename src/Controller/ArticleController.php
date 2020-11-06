@@ -74,7 +74,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $article->setAuthor($this->getUser()->getAuthor());
             $entityManager->persist($article);
             $entityManager->flush();
             $this->addFlash('success',$translator->trans('article.created.success'));
@@ -105,6 +105,7 @@ class ArticleController extends AbstractController
                          EntityManagerInterface $entityManager,
                          TranslatorInterface $translator): Response
     {
+        $this->denyAccessUnlessGranted('EDIT', $article);
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
@@ -136,5 +137,11 @@ class ArticleController extends AbstractController
 
         }
         return $this->redirectToRoute('article_index');
+    }
+    public function latest(ArticleRepository $articleRepository)
+    {
+        return $this->render('article/_latest.html.twig',[
+           'latest'=>$articleRepository->findLatest(),
+        ]);
     }
 }

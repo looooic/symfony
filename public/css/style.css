@@ -21,3 +21,12 @@ footer p {
     background-color: lime;
     color: whitesmoke;
 }
+
+nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+/*.menu .right{*/
+/*    margin-right: 1rem;*/
+/*}*/

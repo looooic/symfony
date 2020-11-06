@@ -12,12 +12,29 @@
      <header>
          <h1>GEN Symfony</h1>
          <nav>
-         <ul class="menu">
+         <ul class="menu left">
              <li><a href="{{ path('default') }}">Acceuil</a></li>
              <li><a href="{{ path('contact') }}">Contact</a></li>
              <li><a href="{{ path('article_index') }}">Articles</a></li>
              <li><a href="{{ path('about') }}">A propos</a></li>
-         </ul></nav>
+
+             {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path('admin_index') }}">Admin</a></li>
+             {% endif %}
+         </ul>
+         <ul class="menu right">
+             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+             <li><a id="Vprofil" href="{{ path("user_profile",{'id': app.user.id}) }}">Voir le profil</a></li>
+             <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li><br>
+             <li><a href="#Vprofil">{{ app.user.username }}</a></li>
+
+             {% else %}
+             <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+             <li><a href="{{ path('app_register') }}">Creer un compte</a></li>
+             {% endif %}
+
+         </ul>
+         </nav>
          {% block header %}
 
          {% endblock %}

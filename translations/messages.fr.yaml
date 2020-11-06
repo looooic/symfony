@@ -44,3 +44,7 @@ article:
         success: Votre article a bien été modifié.
     delete:
         success: Votre article a bien été supprimé.
+
+user:
+    modify:
+        success: Votre profil a été mis a jour.

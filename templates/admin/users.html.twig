@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Administration{% endblock %}
+
+
+{% block body %}
+    <section>
+        <table>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>Date de naissance</th>
+                <th>Actions</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.author ? user.author.email : 'nc' }}</td>
+                <td>{{ user.author ? user.author.firstname : 'nc' }}</td>
+                <td>{{ user.author ? user.author.lastname : 'nc' }}</td>
+                <td>{{ user.author ? user.author.birthday | date('d - m - Y') : 'nc' }}</td>
+                <td><a href="{{ path('admin_change_role',{'id':user.id}) }}">Changer le rôle</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{ path('admin_index') }}">Retour à l'administration</a>
+    </section>
+{% endblock %}

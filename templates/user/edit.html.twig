@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}
+{{ parent() }} - Editer le profil
+{% endblock %}
+
+
+{% block body %}
+    {{ form_start(form_edit) }}
+    {{ form_widget(form_edit) }}
+    <input type="submit" value="Modifier" class="btn btn-dark">
+    {{ form_end(form_edit) }}
+{% endblock %}
+
+
+{#{% block %}#}
+{#{% endblock %}#}

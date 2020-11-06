@@ -15,7 +15,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+
                 <th>{{ 'article.title.label' | trans }}</th>
                 <th>{{ 'article.summary.label' | trans }}</th>
                 <th>{{ 'article.content.label' | trans }}</th>
@@ -28,25 +28,27 @@
         <tbody>
         {% for article in articles %}
             <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
+
+                <td>{{ article.title }} (par: {{ article.author ? article.author.user.username : 'nc' }})</td>
                 <td>{{ article.summary }}</td>
                 <td>{{ article.content }}</td>
                 <td>{{ article.createdAt ? article.createdAt|date('d-m-Y H:i:s') : '' }}</td>
                 <td>{{ article.updatedAt ? article.updatedAt|date('d-m-Y H:i:s') : '' }}</td>
                 <td>{{ (article.published ? 'article.yes' : 'article.no') |trans }}</td>
                 <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">{{ 'article.show' | trans }}</a>
+                        <a href="{{ path('article_show', {'id': article.id}) }}">{{ 'article.show' | trans }}</a>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {% if is_granted('EDIT',article) %}
                     <a href="{{ path('article_edit', {'id': article.id}) }}">{{ 'article.edit' | trans }}</a>
-                </td>
+                    {% endif %}   {% endif %} </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="7">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     <a href="{{ path('article_new') }}">{{ 'article.createNew' | trans }}</a>
-{% endblock %}
+{% endif %}{% endblock %}

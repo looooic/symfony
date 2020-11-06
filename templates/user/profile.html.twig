@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Profil
+{% endblock %}
+
+{% block body %}
+    <h2>Votre profil</h2>
+    <ul>
+        <li>Votre pseudo: {{ user.username }}</li>
+        <li>Votre prénom: {{ user.author ? user.author.firstname : 'nc' }}</li>
+        <li>Votre nom: {{ user.author ? user.author.lastname : 'nc' }}</li>
+        <li>Votre mail: {{ user.author ? user.author.email : 'nc' }}</li>
+        <li>Votre date de naissance: {{ user.author ? user.author.birthday | date('d - m - Y') }}</li>
+    </ul>
+    <a href="{{ path('user_edit',{'id': user.id}) }}">Editer le profil</a>
+{% endblock %}

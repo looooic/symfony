@@ -1,0 +1,9 @@
+{% if latest  %}
+<section>
+    <article>
+        <h3>{{ latest.title }} (par {{ latest.author ? latest.author.user.username : 'nc'}})</h3>
+        <p>{{ latest.summary}}</p>
+        <a href="{{ path('article_show', {'id': latest.id}) }}">Lire la suite...</a>
+    </article>
+</section>
+{% endif %}
