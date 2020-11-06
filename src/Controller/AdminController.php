@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -40,6 +41,18 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route ("/articles",name="liste_articles",methods={"GET"})
+     */
+
+    public function articles(ArticleRepository $articleRepository)
+    {
+        return $this->render('admin/liste_articles.html.twig',[
+            'articles'=> $articleRepository->findAll(),
+        ]);
+    }
+
+
+    /**
      * @Route ("/role/{id}",name="change_role",methods={"GET", "PUT"})
      */
     public function changeRole(User $user, Request $request,
@@ -58,8 +71,13 @@ class AdminController extends AbstractController
                 ]
             ])
         ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted()&& $form->isValid()){
+            $entityManager->flush();
+            $this->addFlash('success',$translator->trans('admin.change_role.success'));
 
-
+            return $this->redirectToRoute('admin_users');
+        }
 
         return $this->render('admin/change_role.html.twig', [
             'user'=> $user,

@@ -48,3 +48,7 @@ article:
 user:
     modify:
         success: Votre profil a été mis a jour.
+
+admin:
+    change_role:
+        success: Le rôle a bien été modifié.
